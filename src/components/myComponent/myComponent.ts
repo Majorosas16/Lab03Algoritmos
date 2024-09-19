@@ -78,7 +78,7 @@ class Employee extends HTMLElement {
             <p>Area: ${this.area || 'No area'}</p>
             <p>Position: ${this.position || 'No position'}</p>
             <p>Time In Company: ${this.timeincompany || 'No time'}</p>
-            <p>Experience: ${this.xp || 'No experience'}</p>
+            <p>Experience Years: ${this.xp || 'No experience'}</p>
             </div>
 
             </div>

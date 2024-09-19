@@ -32,13 +32,23 @@ class AppContainer extends HTMLElement {
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-            <h1>Workers</h1>`;
+            <link rel="stylesheet" href="../src/styles.css">
+
+            <section>
+               <h1>Workers</h1>
+            </section>
+               `;
+            
+            const container = document.createElement('div');
+            container.classList.add('container');
 
             const filter = this.arrayEmployee.filter(element => Number(element.uid) % 2 === 0);
 
             filter.forEach((element) => {
-                this.shadowRoot?.appendChild(element);
+                container.appendChild(element);
             });
+
+            this.shadowRoot.appendChild(container);
         }
     }
 }
