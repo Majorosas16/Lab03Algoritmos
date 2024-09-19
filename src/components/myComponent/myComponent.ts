@@ -33,7 +33,7 @@ class Employee extends HTMLElement {
 
     attributeChangedCallback(propName:Attribute,oldValue: string | undefined,newValue: string | undefined){
         switch(propName){
-            case Attribute.uid: //id
+            case Attribute.uid: //id transform to number to string. All the same in those propieties with number
                 this.uid = newValue ? Number(newValue) : undefined;
                 break;
             
