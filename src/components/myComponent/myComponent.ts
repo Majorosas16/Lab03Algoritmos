@@ -64,8 +64,13 @@ class Employee extends HTMLElement {
     render() {
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-             <section>
+            <link rel="stylesheet" href="../src/components/myComponent/myComponent.css">
+            <section>
+
+            <div id="card">
             <img src="${this.image || 'No image'}" alt="imagen de: ${this.name}">
+
+            <div id="txt">
             <h1>${this.name || 'No name'}</h1>
             <p>ID: ${this.uid || 'No ID'}</p>
             <p>Age: ${this.age || 'No age'}</p>
@@ -74,6 +79,10 @@ class Employee extends HTMLElement {
             <p>Position: ${this.position || 'No position'}</p>
             <p>Time In Company: ${this.timeincompany || 'No time'}</p>
             <p>Experience: ${this.xp || 'No experience'}</p>
+            </div>
+
+            </div>
+
             </section>
             `
         }

@@ -33,8 +33,10 @@ class AppContainer extends HTMLElement {
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <h1>Workers</h1>`;
-           
-            this.arrayEmployee.forEach((element) => {
+
+            const filter = this.arrayEmployee.filter(element => Number(element.uid) % 2 === 0);
+
+            filter.forEach((element) => {
                 this.shadowRoot?.appendChild(element);
             });
         }
