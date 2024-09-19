@@ -1,20 +1,28 @@
-const add = (a:number,b:number):number => {
-    return a + b;
+import Employee, { Attribute } from "./components/myComponent/myComponent";
+import { workers } from "./data/data";
+
+class AppContainer extends HTMLElement {
+
+    constructor() {
+        super();
+        this.attachShadow({mode:"open"})
+    }
+
+    connectedCallback() {
+        this.render();
+    }
+
+    render(){
+        if(this.shadowRoot){
+            this.shadowRoot.innerHTML = `
+            <h2>aaaaaa</h2>`;
+
+        //     this.profiles.forEach((profile) => {
+        //         this.shadowRoot?.appendChild(profile);
+        //     })
+        // }
+    }
 }
-const value = add(1, 2);
-console.log(value);
-
-const myName: string | number = "Majo"; // La variable myName puede ser un string o un número
-
-const myArray: number[] = [2, 2, 3] // forma de tipar un arreglo
-
-enum Colors{ // definir valores o constantes, propio de typescript/ PLantilla
-
-    'Red'='Rojo',
-    'Green'='Verde',
-    'Blue'='Azul',
-} 
-
-let color: Colors = Colors.Blue;
-console.log(color);
+}
+customElements.define("app-container",AppContainer);
 

@@ -1,8 +1,60 @@
-class Workers extends HTMLElement {
+export enum Attribute {
+    "image" = "image",
+    "name" = "name",
+    "uid" = "uid",
+    "age" = "age",
+    "gender" = "gender",
+    "area" = "area",
+    "position" = "position",
+    "timeincompany" = "timeincompany",
+    "xp" = "xp"
+}
+
+class Employee extends HTMLElement {
+
+    image?: string;
+    name?: string;
+    uid?: number;
+    age?: number;
+    gender?: string;
+    area?: string;
+    position?: string;
+    timeincompany?: number;
+    xp?: number;
+
+    static get observedAttributes(){
+        return Object.keys(Attribute); //  return ["image","uid","age".....]
+    }
 
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
+    }
+
+    attributeChangedCallback(propName:Attribute,oldValue: string | undefined,newValue: string | undefined){
+        switch(propName){
+            case Attribute.uid: //id
+                this.uid = newValue ? Number(newValue) : undefined;
+                break;
+            
+            case Attribute.age: //age
+                this.age = newValue ? Number(newValue) : undefined;
+                break;
+            
+            case Attribute.timeincompany: //time in company
+                this.timeincompany = newValue ? Number(newValue) : undefined;
+                break;
+            
+            case Attribute.xp: //xp
+                this.xp = newValue ? Number(newValue) : undefined;
+                break;
+
+            default: 
+            this[propName] = newValue;
+            break;
+        }
+        
+        this.render();
     }
 
     connectedCallback(){
@@ -12,11 +64,21 @@ class Workers extends HTMLElement {
     render() {
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-
+             <section>
+            <img src="${this.image || 'No image'}" alt="imagen de: ${this.name}">
+            <h1>${this.name || 'No name'}</h1>
+            <p>ID: ${this.uid || 'No ID'}</p>
+            <p>Age: ${this.age || 'No age'}</p>
+            <p>Gender: ${this.gender || 'No gender'}</p>
+            <p>Area: ${this.area || 'No area'}</p>
+            <p>Position: ${this.position || 'No position'}</p>
+            <p>Time In Company: ${this.timeincompany || 'No time'}</p>
+            <p>Experience: ${this.xp || 'No experience'}</p>
+            </section>
             `
         }
     }
 }
 
-customElements.define("worker-component", Workers);
-export default Workers;
+customElements.define("worker-component", Employee);
+export default Employee;
